@@ -1,0 +1,103 @@
+/* colors inspired by Creazione site */
+:root {
+  --primary-color: #000000;
+  --secondary-color: #ffc71c;
+  --dark-color: #333;
+  --light-bg: #f9f9f9;
+  --font-family: Arial, sans-serif;
+}
+
+body {
+  margin:0;
+  font-family: var(--font-family);
+  background: var(--light-bg);
+  color: var(--dark-color);
+}
+
+header {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 1rem 0;
+}
+
+header .container {
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  max-width: 960px;
+  margin: 0 auto;
+  padding:0 1rem;
+}
+
+header h1 {
+  margin:0;
+}
+
+nav a {
+  color:#fff;
+  margin-left:1rem;
+  text-decoration:none;
+  font-size: large;
+}
+
+/* highlight current page */
+nav a.active {
+  color: var(--secondary-color);
+  font-weight:bold;
+  /* optional background for more emphasis */
+  background: rgba(255, 199, 28, 0.2);
+  border-radius:4px;
+  padding:0.25rem 0.5rem;
+}
+
+.container {
+  max-width:960px;
+  margin:0 auto;
+  padding:1rem;
+}
+
+section {
+  margin-bottom:2rem;
+}
+
+form label {
+  display:block;
+  margin-top:0.5rem;
+}
+
+form input, form select {
+  width:100%;
+  padding:0.5rem;
+  margin-top:0.25rem;
+}
+
+button {
+  margin-top:1rem;
+  background: var(--primary-color);
+  color:#fff;
+  border:none;
+  padding:0.75rem 1.5rem;
+  cursor:pointer;
+}
+
+button:hover {
+  opacity:0.9;
+}
+
+footer {
+  text-align:center;
+  padding:1rem 0;
+  background:#fff;
+  border-top:1px solid #ccc;
+}
+
+#leaderboard-entries table {
+  width:100%;
+  border-collapse:collapse;
+}
+
+#leaderboard-entries th, #leaderboard-entries td {
+  border:1px solid #ddd;
+  padding:0.5rem;
+  text-align:left;
+}

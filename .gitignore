@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# environment
+.env
+
+# Firebase credentials
+*.json
+
+# VSCode
+.vscode/
+
+# Node modules (if any future)
+node_modules/
