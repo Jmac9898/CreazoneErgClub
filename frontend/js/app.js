@@ -5,17 +5,6 @@ const API_BASE = "https://your-backend-url.com/api"; // replace with real endpoi
 if (window.firebase) {
   const auth = firebase.auth();
   
-  // Function to redirect to login if user is not authenticated
-  // Call this on pages that require login
-  window.requireLogin = () => {
-    auth.onAuthStateChanged(user => {
-      if (!user) {
-        // User is not logged in, redirect to login page
-        window.location = './login.html';
-      }
-    });
-  };
-  
   // update the nav login/logout link depending on auth state
   auth.onAuthStateChanged(user => {
     // publish global flag for other scripts
@@ -43,6 +32,7 @@ if (window.firebase) {
       submitSection.style.display = user ? '' : 'none';
     }
   });
+}
 
 async function fetchChallenges() {
   try {
@@ -64,7 +54,6 @@ async function fetchChallenges() {
   } catch (err) {
     console.warn('fetchChallenges error:', err);
   }
-}
 }
 
 async function submitScore(event) {
@@ -116,11 +105,7 @@ async function loadLeaderboard(challengeId) {
 window.addEventListener("DOMContentLoaded", async () => {
   // only try to fetch challenges when the list exists (not on login/register page)
   if (document.getElementById("challenge-list")) {
-    try {
-      await fetchChallenges();
-    } catch (err) {
-      console.warn('fetchChallenges error:', err);
-    }
+    await fetchChallenges();
   }
 
   // attach form handler if the form exists on this page
@@ -135,24 +120,10 @@ window.addEventListener("DOMContentLoaded", async () => {
   if (!currentFile) currentFile = 'index.html';
   links.forEach(link => {
     let href = link.getAttribute("href");
-    console.log(link);
     if (href === './' || href === '') href = 'index.html';
     const linkFile = href.split('/').pop();
     if (linkFile === currentFile) {
-        console.log(linkFile);
       link.classList.add("active");
     }
   });
 });
-
-// run once at startup
-// const links = document.querySelectorAll('header nav a');
-// links.forEach(a => {
-//   a.addEventListener('click', e => {
-//     // if it’s a hash or same‑page link, prevent navigation
-//     e.preventDefault();
-//     links.forEach(x => x.classList.remove('active'));
-//     a.classList.add('active');
-//     // optionally change location or show a different section…
-//   });
-// });
