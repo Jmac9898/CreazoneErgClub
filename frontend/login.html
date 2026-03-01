@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Creazone Fitness</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="https://www.creazione.co.uk/">
+        <img class="website-logo-image" width="225" src="https://www.creazione.co.uk/s/misc/logo.png?t=1771038479" alt="Creazone logo">
+      </a>
+      <nav>
+        <a href="./">Home</a>
+        <a href="challenges.html">Our Challenges</a>
+        <a href="team.html">Our Team</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html" id="nav-login">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Sign In</h1>
+    <form id="login-form">
+      <label for="email">Email</label>
+      <input type="email" id="email" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" required />
+
+      <button type="submit">Login</button>
+    </form>
+    <p id="login-message"></p>
+    <p>Don't have an account? <a href="#" id="register-link">Register</a></p>
+  </main>
+
+  <footer>
+    <p>© Creazone Fitness</p>
+  </footer>
+
+  <script>
+    // firebase-config.js is loaded before this script and handles initialization
+    const auth = firebase.auth();
+
+    document.getElementById('login-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      auth.signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          document.getElementById('login-message').textContent = 'Logged in!';
+          // redirect somewhere
+          window.location = './';
+        })
+        .catch(err => {
+          document.getElementById('login-message').textContent = err.message;
+        });
+    });
+
+    document.getElementById('register-link').addEventListener('click', e => {
+      e.preventDefault();
+      const email = prompt('Enter email');
+      const password = prompt('Enter password');
+      if (email && password) {
+        auth.createUserWithEmailAndPassword(email, password)
+          .then(() => {
+            document.getElementById('login-message').textContent = 'Account created! You can now log in.';
+          })
+          .catch(err => {
+            document.getElementById('login-message').textContent = err.message;
+          });
+      }
+    });
+  </script>
+  <script src="js/app.js"></script>
+</body>
+</html>

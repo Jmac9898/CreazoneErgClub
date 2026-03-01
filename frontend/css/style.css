@@ -33,6 +33,10 @@ header h1 {
   margin:0;
 }
 
+nav {
+  display:flex;
+}
+
 nav a {
   color:#fff;
   margin-left:1rem;
@@ -40,8 +44,25 @@ nav a {
   font-size: large;
 }
 
+nav a#nav-login {
+  margin-left: 1rem; 
+  color:#fff;
+  font-size: large;
+}
+
 /* highlight current page */
 nav a.active {
+  color: var(--secondary-color);
+  font-weight:bold;
+  /* optional background for more emphasis */
+  background: rgba(255, 199, 28, 0.2);
+  border-radius:4px;
+  padding:0.25rem 0.5rem;
+}
+
+/* login/logout link gets styling only when the active class is also present */
+nav a#nav-login.active {
+  /* this may never be needed if login page is separate */
   color: var(--secondary-color);
   font-weight:bold;
   /* optional background for more emphasis */

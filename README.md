@@ -68,6 +68,21 @@ export GOOGLE_APPLICATION_CREDENTIALS="/path/to/creds.json"
 python seeds.py
 ```
 
+### Authentication
+
+The frontend includes a login page (`frontend/login.html`) which uses Firebase
+Authentication (email/password) to sign users in. To enable it:
+
+1. Create a Firebase project and enable **Email/Password** sign-in method.
+2. Copy the project's configuration object and paste it into `frontend/js/app.js`
+   and `frontend/login.html` (replace the `firebaseConfig` placeholders).
+3. When a user logs in, the nav link changes to `Logout (email)`; clicking it
+   signs the user out.
+
+> Note: the backend is currently not enforcing authentication on requests. You
+> may want to extend the API to verify the ID token (use `verify_id_token` in
+> `backend/app.py`) before accepting score submissions.
+
 
 1. Enable Firestore in your Firebase project.
 2. Optionally, set up Firebase Authentication and configure the backend to verify tokens in requests (not implemented yet).
