@@ -28,8 +28,10 @@ if (window.firebase) {
 
     // hide the entire submit-score section unless the user is logged in
     const submitSection = document.getElementById('submit-score');
+    const loginReminder = document.getElementById('login-reminder')
     if (submitSection) {
       submitSection.style.display = user ? '' : 'none';
+      loginReminder.style.display = user ? 'none' : '';
     }
   });
 }
